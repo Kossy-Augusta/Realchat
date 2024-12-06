@@ -12,10 +12,14 @@
   "description": "",
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/node": "^22.10.1",
     "@types/nodemon": "^1.19.6",
+    "prisma": "^6.0.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@prisma/client": "^6.0.1",
     "express": "^4.21.1",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2"
