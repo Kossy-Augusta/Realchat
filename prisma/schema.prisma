@@ -18,8 +18,8 @@ model User{
   username        String          @db.VarChar(50)
   email           String          @unique
   password        String
-  refresh_token   String
-  picture         String?
+  refresh_token   String          @default("")
+  picture         String?         @default("")
   created_at      DateTime        @default(now())
   updated_at      DateTime        @updatedAt
   chats           Chat[]
