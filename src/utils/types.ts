@@ -12,3 +12,7 @@ export type newUser = {
     picture?: string,
     refresh_toke?:string
 }
+export type loginUser = {
+    email: string,
+    password: string
+}
