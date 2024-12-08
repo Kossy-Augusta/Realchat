@@ -6,5 +6,6 @@ const userAuth = new UserAuth
 const router = express.Router();
 
 router.post('/create', (req:Request, res: Response)=>{ userAuth.create(req, res)});
+router.post('/login', (req:Request, res: Response)=>{ userAuth.login(req, res)});
 
 export default router
