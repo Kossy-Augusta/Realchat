@@ -7,7 +7,9 @@ const envSchema: Joi.ObjectSchema = Joi.object({
     DB_DATABASE: Joi.string().required(),
     DB_USERNAME: Joi.string().required(),
     DB_PASSWORD: Joi.string().allow('').optional(),
-    DATABASE_URL: Joi.string().required()
+    DATABASE_URL: Joi.string().required(),
+    ACCESS_TOKEN_SECRET: Joi.string().required(),
+    REFRESH_TOKEN_SECRET: Joi.string().required(),
 }).unknown(true);
 
 const {error, value: envVars} = envSchema.validate(process.env, {abortEarly: false});
