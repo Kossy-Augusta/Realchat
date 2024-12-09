@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserAuthInterface from "../interfaces/auth.interface";
-import {creatUserSchema, loginUserSchema} from "../validations/user-validation"
+import {creatUserSchema, loginUserSchema} from "../validations/user-auth-validation"
 import { handleError, handleSuccess } from "../utils/responseHandler";
 import prisma from "../utils/clients";
 import bcrypt from "bcrypt";
