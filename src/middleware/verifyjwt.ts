@@ -20,8 +20,8 @@ const verifyJWT = (req: Request, res: Response, next: NextFunction)=>{
         }
         if(decoded){
             req.userInfo = {
-                username: decoded.username,
-                email: decoded.email
+                username: decoded.userInfo.username,
+                email: decoded.userInfo.email
             }
         }
         next()
