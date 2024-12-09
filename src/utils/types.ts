@@ -1,4 +1,4 @@
-
+ 
 export type ResponseObject ={
     error: boolean,
     message: string,
@@ -15,4 +15,11 @@ export type newUser = {
 export type loginUser = {
     email: string,
     password: string
+}
+export type sendNewMessage = {
+    sender_id: number,
+    reciever_id: number,
+    content: string,
+    message_type: string,
+    message_url?: string
 }
