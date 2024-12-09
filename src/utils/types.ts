@@ -1,4 +1,11 @@
- 
+// add custom property to the request object
+declare global {
+    namespace Express {
+    interface Request {
+        userInfo?: UserInfo;
+    }
+    }
+}
 export type ResponseObject ={
     error: boolean,
     message: string,
@@ -22,4 +29,9 @@ export type sendNewMessage = {
     content: string,
     message_type: string,
     message_url?: string
+}
+
+export type UserInfo = {
+    username: string;
+    email: string;
 }
