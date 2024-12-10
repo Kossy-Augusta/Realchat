@@ -1,12 +1,53 @@
 import { Request, Response } from "express";
 import MessageManagementInterface from "../interfaces/message.interface";
-import { sendNewMessageSchema } from "../validations/message-validation";
+import { sendNewMessageSchema, getMessagesSchema } from "../validations/message-validation";
 import { handleError, handleSuccess } from "../utils/responseHandler";
 import prisma from "../utils/clients";
 import { MessageType } from "@prisma/client";
 
 export default class MessageController implements MessageManagementInterface{
-    async sendMessage(req: Request, res: Response): Promise<Response> {
+    async index(req: Request, res: Response): Promise<Response> {
+        const {error, value} = getMessagesSchema.validate(req.params);
+        if (error) return handleError(res, 400, error);
+
+        // check if the chat with the chat id exist
+        const existingChat = await prisma.chat.findFirst({
+            where:{id: value.chat_id},
+        });
+        if (!existingChat) return handleError(res, 400, `Chat with id: ${value.chat_id} does not exist`);
+
+        // get the messages assoctaited with the chat
+        const messages = await prisma.message.findMany({
+            where: {
+                chat_id: value.chat_id
+            },
+            select: {
+                content: true,
+                message_type: true,
+                message_url: true,
+                updated_at: true,
+                sender:{
+                    select:{
+                        id: true,
+                        username: true,
+                    }
+
+                },
+                reciever:{
+                    select:{
+                        id: true,
+                        username: true,
+                    }
+
+                },
+            }
+        });
+        if ( messages.length === 0) return handleError(res, 200, "No messages");
+        console.log(messages);
+        
+        return handleSuccess(res, 200, "Messages successfully fetched", messages);
+    }
+    async store(req: Request, res: Response): Promise<Response> {
         const {error, value} = sendNewMessageSchema.validate(req.body);
 
         if (error) return handleError(res, 400, error.details[0].message);
