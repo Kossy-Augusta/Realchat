@@ -5,7 +5,7 @@ import ChatController from "../controllers/chatController";
 const router = express.Router();
 const chatController = new ChatController()
 
-router.get("/chat/all-chats", verifyJWT, (req: Request, res: Response) => {
+router.get("/chats", verifyJWT, (req: Request, res: Response) => {
   chatController.getAllChats(req, res);
 });
 
