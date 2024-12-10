@@ -4,6 +4,7 @@ import express from "express";
 import envVars from "./validations/env-validation";
 import authRoute from "./routes/auth.routes"
 import messageRoute from "./routes/message-routes"
+import chatRoute from "./routes/chat.routes";
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/v1', authRoute);
 app.use('/v1', messageRoute);
+app.use('/v1', chatRoute);
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
