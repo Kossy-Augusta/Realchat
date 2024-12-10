@@ -18,5 +18,9 @@ export const sendNewMessageSchema = Joi.object<sendNewMessage>({
 }).custom(method,"Custom validation for sender and receiver")
     .messages({
     "custom.senderReceiverConflict": "Sender and receiver cannot have the same id."
-    })
+    });
+
+export const getMessagesSchema = Joi.object({
+    chat_id: Joi.number().required()
+})
 
